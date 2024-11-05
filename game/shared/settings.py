@@ -13,7 +13,7 @@ SETTINGS = {
     "TEXT_SIZES": (200, 100, 60, 40)
 }
 
-# NOTE: checar se esse método funciona para obter o diretório com o programa compilado
+# TODO: trocar para os paths corretos (game, assets)
 if getattr(sys, 'frozen', False):
     SETTINGS["PARENT_DIR"] = path.dirname(sys.executable)
 elif __file__:

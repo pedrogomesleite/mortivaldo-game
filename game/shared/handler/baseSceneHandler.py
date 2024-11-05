@@ -1,5 +1,4 @@
-import interfaceHandler, loadManager
-
+from game.shared.handler.loadHandler import loadFonts
 
 class BaseSceneHandler:
     """
@@ -10,53 +9,45 @@ class BaseSceneHandler:
     """
 
     def __init__(self):
+        # TODO: iniciar as variaveis de cena
+        self.fonts = None
+        self.scene = None
         self.current_state = None
-
         self.run = True
         self.loadFonts()
+        self.setScene()
 
     def loadFonts(self):
         # TODO: fontes especias do game padrão em todas
         # Load fonts
-        self.fonts = loadManager.loadFonts(
+        self.fonts = loadFonts(
             [
 
             ]
         )
 
-    def runState(self, events, layers):
+    def runState(self, events):
         """
         Chama a função da cena atual.
 
         Argumentos:
         ---
         - events: eventos do pygame;
-        - layers: camadas de renderização.
         """
 
-        # TODO: tratar eventos
+        if self.current_state is False:
+            self.scene.resetScene()
+            return
 
-        interfaceHandler.handleInterface(events, self, layers)
+        # TODO: tratar eventos com heranca usand o baseActionHandler
 
-    def setScene(self, layers):
-        """
-
-        Argumentos:
-        ---
-        - scene_index: índice da cena de destino.
-        """
-
-        # TODO: receber os handlers das cenas se desenhar '-'
-
-        self.clearScreen(layers)
-
-    def clearScreen(self, layers):
+    def clearScreen(self, scene):
         """
         Limpa todas as camadas de renderização.
         """
 
-        layers.clear()
-        layers.append([])
-        layers.append([])
+        self.scene.layers.clear()
+        self.scene.layers.append([])
+        self.scene.layers.append([])
 
 # TODO: transições

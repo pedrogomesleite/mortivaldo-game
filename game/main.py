@@ -1,4 +1,5 @@
-import sys, pygame
+import pygame
+import sys
 
 from game.shared.handler import render
 from game.shared.settings import SETTINGS
@@ -15,6 +16,8 @@ clock = pygame.time.Clock()
 scenesHandlers = []
 current_state = None
 
+pygame.mouse.set_visible(False)
+pygame.mouse.set
 
 def main():
     # TODO: iniciar o menu

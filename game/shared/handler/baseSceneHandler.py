@@ -34,11 +34,13 @@ class BaseSceneHandler:
         - events: eventos do pygame;
         """
 
+        self.scene.gameLoop()
+
         if self.run is False:
             self.scene.resetScene()
             return
 
-        # TODO: tratar eventos com heranca usand o baseActionHandler
+        # TODO: tratar eventos com heranca usando o baseActionHandler
 
     def clearScreen(self, scene):
         """

@@ -33,6 +33,36 @@ def loadSpriteSheet(file_name: str, unit_size, tiles: list[int] = [1, 1], color_
     return sprites
 
 
+def loadAllSpritesFromDirectory(directory: str, color_key: tuple = (255, 255, 255)):
+    """
+    Carrega todas as imagens de um diretório e as retorna em uma lista.
+
+    Argumentos:
+    directory : str
+        O diretório onde as imagens estão localizadas.
+    color_key : tuple
+        A cor do fundo a ser removida das imagens (transparência).
+
+    Retorna:
+    list
+        Uma lista contendo as superfícies (sprites) carregadas de todas as imagens.
+    """
+    sprites = []
+
+    if not os.path.isdir(directory):
+        raise ValueError(f"O diretório {directory} não existe.")
+
+    for filename in os.listdir(directory):
+        if filename.endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+            file_path = os.path.join(directory, filename)
+
+
+            img = image.load(file_path).convert()
+            img.set_colorkey(color_key)
+            sprites.append(img)
+
+    return sprites
+
 def loadSprite(file_name, color_key: color.Color = (255, 255, 255, 255), folder_name=""):
     """
 	Carrega uma única sprite.

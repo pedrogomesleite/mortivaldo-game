@@ -1,9 +1,9 @@
 import pygame
 import sys
 
-from game.scenes.forca.ForcaSceneHandler import ForcaSceneHandler
-from game.shared.handler import render
-from game.shared.settings import SETTINGS
+from scenes.forca.ForcaSceneHandler import ForcaSceneHandler
+from shared.handler import render
+from shared.settings import SETTINGS
 
 # Pygame setup
 pygame.init()

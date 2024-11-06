@@ -20,7 +20,7 @@ elif __file__:
     SETTINGS["PARENT_DIR"] = path.dirname(path.dirname(__file__))
 
 SETTINGS["SCRIPTS_DIR"] = path.join(SETTINGS["PARENT_DIR"], "scripts")
-SETTINGS["SOURCE_DIR"] = path.join(SETTINGS["PARENT_DIR"], "source")
+SETTINGS["SOURCE_DIR"] = path.join(SETTINGS["PARENT_DIR"], "assets")
 
 COLORS = {
     "light_gray": color.Color(225, 225, 225),

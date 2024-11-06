@@ -37,10 +37,6 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            elif event.type == pygame.KEYDOWN:
-                if chr(event.key) == "p":
-                    audioHandler.setupScene('fase1', ['Ambiente 1.mp3', 0.2])
-                    audioHandler.playSceneMusic()
 
         for handler in scenesHandlers:
             handler.runState(events)

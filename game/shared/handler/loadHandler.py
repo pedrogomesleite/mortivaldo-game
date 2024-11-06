@@ -1,4 +1,6 @@
 import os
+
+import pygame.mixer
 from pygame import image, font, Surface, color
 
 from game.shared.settings import SETTINGS
@@ -80,13 +82,13 @@ def loadSprite(file_name, color_key: color.Color = (255, 255, 255, 255), folder_
     return surface
 
 
-def loadFonts(requests):
+def loadFonts(requests:list):
     """
 	Carrega as fontes requeridas.
 
     Argumentos:
     ---
-	- *requests: fontes a carregar.
+	- `*requests`: fontes a carregar; cada request é no formato [<nome do arquivo>:str, <tamanho da fonte>:int].
     """
 
     fonts = []
@@ -97,3 +99,21 @@ def loadFonts(requests):
     return fonts
 
 # TODO: Função que manipula o objeto de animação
+
+def loadMusic(file_name, volume, folder_name=""):
+    pygame.mixer.music.load(os.path.join(SETTINGS["SOURCE_DIR"], "audio", folder_name, file_name))
+
+
+def loadAudio(file_name, volume=0.3, folder_name=""):
+    """
+    Carrega um arquivo de áudio.
+
+    Argumentos:
+    - file_name: nome do arquivo;
+    - volume: volume do áudio.
+    - folder_name: nome da pasta específica do arquivo;
+    """
+    audio = pygame.mixer.Sound(os.path.join(SETTINGS["SOURCE_DIR"], "audio", folder_name, file_name))
+    audio.set_volume(volume)
+
+    return audio

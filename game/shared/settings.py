@@ -6,7 +6,7 @@ from pygame import Vector2, color
 
 SETTINGS = {
     "FPS": 60,
-    "SCREEN_SIZE": Vector2(1000, 700),
+    "SCREEN_SIZE": Vector2(1920, 1080),
     "GRID_ORIGIN": Vector2(50, 200),
     "GRID_SIZE": Vector2(900, 450),
     "UNIT_SIZE": 50,

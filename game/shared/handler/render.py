@@ -1,4 +1,3 @@
-from pygame import display, transform, draw
 
 from game.shared.handler.baseSceneHandler import BaseSceneHandler
 
@@ -9,4 +8,4 @@ def renderScene(screen, handler: BaseSceneHandler):
         for obj in layer:
             obj.drawSelf(screen)
 
-    display.update()
+

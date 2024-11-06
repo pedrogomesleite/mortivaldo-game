@@ -1,6 +1,8 @@
 import pygame
 import sys
 
+from pygame import display
+
 from game.scenes.dialogo.DialogoSceneHandler import DialogoSceneHandler
 from scenes.forca.ForcaSceneHandler import ForcaSceneHandler
 from shared.handler import render
@@ -37,10 +39,12 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-
+        SCREEN.fill((0, 0, 0))
         for handler in scenesHandlers:
             handler.runState(events)
             render.renderScene(SCREEN, handler)
+
+        display.update()
 
         clock.tick(SETTINGS["FPS"])
 

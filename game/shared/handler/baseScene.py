@@ -7,8 +7,6 @@ class BaseScene:
         self.layers = []
         # TODO: iniciar layers com heranca
 
-        return
-
     def gameLoop(self):
         return
 

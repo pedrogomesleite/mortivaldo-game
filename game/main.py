@@ -1,6 +1,7 @@
 import pygame
 import sys
 
+from game.scenes.forca.ForcaSceneHandler import ForcaSceneHandler
 from game.shared.handler import render
 from game.shared.settings import SETTINGS
 
@@ -8,16 +9,16 @@ from game.shared.settings import SETTINGS
 pygame.init()
 
 SCREEN = pygame.display.set_mode(SETTINGS["SCREEN_SIZE"], )
-pygame.display.set_caption("Jogo da Cobrinha")
+pygame.display.set_caption("Mortivaldo game")
 clock = pygame.time.Clock()
 
 # TODO: importar esse vetor em todos os handlers e na iniciação
 # TODO: [forca, juntar, livro, final, dialogo]
-scenesHandlers = []
+scenesHandlers = [ForcaSceneHandler()]
 current_state = None
 
 pygame.mouse.set_visible(False)
-pygame.mouse.set
+
 
 def main():
     # TODO: iniciar o menu
@@ -30,6 +31,7 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
 
         for handler in scenesHandlers:
             handler.runState(events)

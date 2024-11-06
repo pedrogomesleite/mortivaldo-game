@@ -1,5 +1,6 @@
 from game.shared.handler.loadHandler import loadFonts
 
+
 class BaseSceneHandler:
     """
     Administra as cenas do jogo. Responsável por
@@ -12,10 +13,8 @@ class BaseSceneHandler:
         # TODO: iniciar as variaveis de cena
         self.fonts = None
         self.scene = None
-        self.current_state = None
         self.run = True
-        self.loadFonts()
-        self.setScene()
+        # self.loadFonts()
 
     def loadFonts(self):
         # TODO: fontes especias do game padrão em todas
@@ -35,7 +34,7 @@ class BaseSceneHandler:
         - events: eventos do pygame;
         """
 
-        if self.current_state is False:
+        if self.run is False:
             self.scene.resetScene()
             return
 

@@ -6,4 +6,3 @@ class ForcaSceneHandler(BaseSceneHandler):
     def __init__(self):
         super().__init__()
         self.scene = ForcaScene()
-        self.fonts = None

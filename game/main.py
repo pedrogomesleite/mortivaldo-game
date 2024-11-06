@@ -1,6 +1,7 @@
 import pygame
 import sys
 
+from game.scenes.dialogo.DialogoSceneHandler import DialogoSceneHandler
 from scenes.forca.ForcaSceneHandler import ForcaSceneHandler
 from shared.handler import render
 from shared.settings import SETTINGS
@@ -14,7 +15,7 @@ clock = pygame.time.Clock()
 
 # TODO: importar esse vetor em todos os handlers e na iniciação
 # TODO: [forca, juntar, livro, final, dialogo]
-scenesHandlers = [ForcaSceneHandler()]
+scenesHandlers = [ForcaSceneHandler(), DialogoSceneHandler()]
 current_state = None
 
 pygame.mouse.set_visible(False)
@@ -31,7 +32,6 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-
 
         for handler in scenesHandlers:
             handler.runState(events)

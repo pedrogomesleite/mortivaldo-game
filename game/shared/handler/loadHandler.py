@@ -57,7 +57,7 @@ def loadAllSpritesFromDirectory(directory: str, color_key: tuple = (255, 255, 25
             file_path = os.path.join(directory, filename)
 
 
-            img = image.load(file_path).convert()
+            img = image.load(file_path).convert_alpha()
             img.set_colorkey(color_key)
             sprites.append(img)
 
@@ -74,7 +74,7 @@ def loadSprite(file_name, color_key: color.Color = (255, 255, 255, 255), folder_
 	- folder_name: nome da pasta do arquivo.
 	"""
 
-    surface = image.load(os.path.join(SETTINGS["SOURCE_DIR"], "graphics", folder_name, file_name)).convert()
+    surface = image.load(os.path.join(SETTINGS["SOURCE_DIR"], "sprite", folder_name, file_name)).convert_alpha()
     if color_key != ():
         surface.set_colorkey(color_key)
     return surface

@@ -1,4 +1,5 @@
 from game.shared.handler.loadHandler import loadFonts
+from game.shared.settings import SETTINGS
 
 
 class BaseSceneHandler:
@@ -21,7 +22,10 @@ class BaseSceneHandler:
         # Load fonts
         self.fonts = loadFonts(
             [
-
+                ["Pixeltype.ttf", SETTINGS["TEXT_SIZES"][0]],
+                ["Pixeltype.ttf", SETTINGS["TEXT_SIZES"][1]],
+                ["Pixeltype.ttf", SETTINGS["TEXT_SIZES"][2]],
+                ["Pixeltype.ttf", SETTINGS["TEXT_SIZES"][3]]
             ]
         )
 
@@ -42,7 +46,7 @@ class BaseSceneHandler:
 
         # TODO: tratar eventos com heranca usando o baseActionHandler
 
-    def clearScreen(self, scene):
+    def clearScreen(self):
         """
         Limpa todas as camadas de renderização.
         """

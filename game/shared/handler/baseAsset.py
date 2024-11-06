@@ -10,7 +10,7 @@ class BaseAsset:
         self.x = 0
         self.y = 0
         self.indice = 0
-        self.sprite = None
+        self.sprite = pygame.surface.Surface((0, 0))
         self.sprites = []
 
     def drawSelf(self, screen):
@@ -28,7 +28,7 @@ class BaseAsset:
         screen.blit(self.sprites[self.indice], (self.x, self.y))
 
     def static(self, screen):
-        screen.blit(self.sprite[self.indice], (self.x, self.y))
+        screen.blit(self.sprite, (self.x, self.y))
 
     def loadStatic(self, filename, filefolder=""):
         self.sprite = loadSprite(file_name=filename, folder_name=filefolder)

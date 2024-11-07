@@ -36,9 +36,9 @@ clock = pygame.time.Clock()
 # IMPORTANT: deixa esse import aqui sem ele NÃO VAI FUNCIONAR
 from game.shared.handler.mensageHandler import sendDialogo, dialogoHandler
 
-gameHandler = GameHandler(ForcaSceneHandler(), dialogoHandler)
+gameHandler = GameHandler(AudioHandler(), ForcaSceneHandler(), dialogoHandler)
 # scenesHandlers = [ForcaSceneHandler(), dialogoHandler]
-audioHandler = AudioHandler()
+
 current_state = None
 
 pygame.mouse.set_visible(False)
@@ -46,9 +46,8 @@ pygame.mouse.set_visible(False)
 
 def main():
     # TODO: iniciar o menu
-    sendDialogo("11111111111 222222222 3333333333 4444444 55555555 6666666666 77777777 88888888")
-    sendDialogo("tsete2")
-    sendDialogo("tsete3")
+
+    gameHandler.setupMenu()
 
     while True:
 
@@ -58,9 +57,7 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    gameHandler.sceneHandlers[0].scene.startForca()
+
 
         SCREEN.fill((0, 0, 0))
 
@@ -69,7 +66,6 @@ def main():
             render.renderScene(SCREEN, handler)
 
         display.update()
-
         clock.tick(SETTINGS["FPS"])
 
 

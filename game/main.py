@@ -1,5 +1,7 @@
 import pygame
 import sys
+from os import path
+from screeninfo import get_monitors
 
 from pygame import display
 
@@ -8,8 +10,7 @@ from scenes.forca.ForcaSceneHandler import ForcaSceneHandler
 from shared.handler import render
 from shared.settings import SETTINGS
 from shared.handler.audioHandler import AudioHandler
-
-from screeninfo import get_monitors
+from shared.handler.loadHandler import loadSprite
 
 # Obtém a resolução do monitor (qualquer monitor)
 monitor = get_monitors()[0]
@@ -25,7 +26,7 @@ pygame.init()
 
 SCREEN = pygame.display.set_mode(SETTINGS["SCREEN_SIZE"], pygame.FULLSCREEN)
 pygame.display.set_caption("Mortivaldo game")
-# pygame.display.set_icon()
+pygame.display.set_icon(loadSprite("3 Eternidade.png", folder_name="runas"))
 clock = pygame.time.Clock()
 
 # TODO: importar esse vetor em todos os handlers e na iniciação
@@ -54,7 +55,9 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
         SCREEN.fill((0, 0, 0))
+
         for handler in scenesHandlers:
             handler.runState(events)
             render.renderScene(SCREEN, handler)

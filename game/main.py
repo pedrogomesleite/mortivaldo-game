@@ -9,12 +9,21 @@ from shared.handler import render
 from shared.settings import SETTINGS
 from shared.handler.audioHandler import AudioHandler
 
+from screeninfo import get_monitors
+
+# Obtém a resolução do monitor (qualquer monitor)
+monitor = get_monitors()[0]
+screen_size = (monitor.width, monitor.height)
+
+SETTINGS["SCREEN_SIZE"] = screen_size
+
 # Pygame setup
 pygame.init()
 
 # TODO: fullscreen, adaptabilidade ao moniotr?
 
-SCREEN = pygame.display.set_mode(SETTINGS["SCREEN_SIZE"])
+
+SCREEN = pygame.display.set_mode(SETTINGS["SCREEN_SIZE"], pygame.FULLSCREEN)
 pygame.display.set_caption("Mortivaldo game")
 # pygame.display.set_icon()
 clock = pygame.time.Clock()

@@ -24,7 +24,8 @@ class DialogoSceneHandler(BaseSceneHandler):
         super().runState(events)
 
     def setText(self, text=""):
-        textobgj = TextObj(self.fonts.render(text, True, (255, 255, 255)))
+        print(text)
+        textobgj = TextObj(text, self.fonts)
         self.texts.append(textobgj)
         if len(self.scene.textLayer) == 0:
             self.scene.loadText(textobgj)

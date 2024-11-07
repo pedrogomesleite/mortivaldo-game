@@ -12,6 +12,7 @@ class BaseAsset:
         self.indice = 0
         self.sprite = pygame.surface.Surface((0, 0))
         self.sprites = []
+        self.vel = 5
 
     def drawSelf(self, screen):
         # TODO: desenhar a si mesmo com heraça
@@ -23,7 +24,20 @@ class BaseAsset:
             self.tick = 0
         if self.indice == len(self.sprites) - 1:
             self.indice = 0
-        elif self.tick % 5 == 0:
+        elif self.tick % self.vel == 0:
+            self.indice += 1
+        screen.blit(self.sprites[self.indice], (self.x, self.y))
+
+    def animationOnce(self, screen):
+        self.tick += 1
+        if self.tick == 60:
+            self.tick = 0
+        if self.indice == len(self.sprites) - 1:
+            if self.sprite != self.sprites[-1]:
+                self.sprite = self.sprites[-1]
+            self.static(screen)
+            return
+        elif self.tick % self.vel == 0:
             self.indice += 1
         screen.blit(self.sprites[self.indice], (self.x, self.y))
 

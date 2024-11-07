@@ -20,7 +20,7 @@ class BaseSceneHandler:
     def loadFont(self):
         # TODO: fontes especias do game padrão em todas
         # Load fonts
-        self.fonts = loadFont("Pixeltype.ttf", SETTINGS["TEXT_SIZES"][2])
+        self.fonts = loadFont("TruetypewriterPolyglott.ttf", SETTINGS["TEXT_SIZES"][2])
 
     def runState(self, events):
         """

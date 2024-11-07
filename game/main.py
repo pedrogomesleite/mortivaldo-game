@@ -44,9 +44,10 @@ pygame.mouse.set_visible(False)
 
 def main():
     # TODO: iniciar o menu
-    sendDialogo("tsete1")
+    sendDialogo("1111111111111111111111111 2222222222222222222 33333333333333333333 44444444444444444444 55555555555555555 6666666666666666666666666 7777777777777777777 8888888888888")
     sendDialogo("tsete2")
     sendDialogo("tsete3")
+
     while True:
 
         events = pygame.event.get()
@@ -55,6 +56,9 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    scenesHandlers[0].scene.startForca()
 
         SCREEN.fill((0, 0, 0))
 

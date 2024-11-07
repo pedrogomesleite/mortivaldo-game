@@ -16,11 +16,16 @@ class DialogoSceneHandler(BaseSceneHandler):
         for event in events:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    self.run = False
+                    if len(self.texts) > 1:
+                        self.scene.nextText(self.texts.pop(1))
+                    else:
+                        self.texts = []
+                        self.run = False
         super().runState(events)
 
     def setText(self, text=""):
-        self.texts.append(text)
         textobgj = TextObj(self.fonts.render(text, True, (255, 255, 255)))
-        self.scene.loadText(textobgj)
-        self.run = True
+        self.texts.append(textobgj)
+        if len(self.scene.textLayer) == 0:
+            self.scene.loadText(textobgj)
+            self.run = True

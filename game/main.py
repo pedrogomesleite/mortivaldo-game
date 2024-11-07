@@ -43,7 +43,9 @@ pygame.mouse.set_visible(False)
 
 def main():
     # TODO: iniciar o menu
-    sendDialogo("tsete123")
+    sendDialogo("tsete1")
+    sendDialogo("tsete2")
+    sendDialogo("tsete3")
     while True:
 
         events = pygame.event.get()

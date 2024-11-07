@@ -5,6 +5,8 @@ from pygame import image, font, Surface, color
 
 from game.shared.settings import SETTINGS
 
+pygame.font.init()
+
 
 def loadSpriteSheet(file_name: str, unit_size, tiles: list[int] = [1, 1], color_key: color.Color = (255, 255, 255, 255),
                     folder_name=""):
@@ -58,12 +60,12 @@ def loadAllSpritesFromDirectory(directory: str, color_key: tuple = (255, 255, 25
         if filename.endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
             file_path = os.path.join(directory, filename)
 
-
             img = image.load(file_path).convert_alpha()
             img.set_colorkey(color_key)
             sprites.append(img)
 
     return sprites
+
 
 def loadSprite(file_name, color_key: color.Color = (255, 255, 255, 255), folder_name=""):
     """
@@ -82,7 +84,7 @@ def loadSprite(file_name, color_key: color.Color = (255, 255, 255, 255), folder_
     return surface
 
 
-def loadFonts(requests:list):
+def loadFont(fontName: "", size):
     """
 	Carrega as fontes requeridas.
 
@@ -91,12 +93,9 @@ def loadFonts(requests:list):
 	- `*requests`: fontes a carregar; cada request é no formato [<nome do arquivo>:str, <tamanho da fonte>:int].
     """
 
-    fonts = []
-
-    for i in requests:
-        fonts.append(font.Font(os.path.join(SETTINGS["SOURCE_DIR"], "fonts", i[0]), i[1]))
-
+    fonts = font.Font(os.path.join(SETTINGS["SOURCE_DIR"], "fonts", fontName), size)
     return fonts
+
 
 # TODO: Função que manipula o objeto de animação
 

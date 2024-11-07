@@ -30,7 +30,11 @@ clock = pygame.time.Clock()
 
 # TODO: importar esse vetor em todos os handlers e na iniciação
 # TODO: [forca, juntar, livro, final, dialogo]
-scenesHandlers = [ForcaSceneHandler(), DialogoSceneHandler()]
+
+# IMPORTANT: deixa esse import aqui sem ele NÃO VAI FUNCIONAR
+from game.shared.handler.mensageHandler import sendDialogo, dialogoHandler
+
+scenesHandlers = [ForcaSceneHandler(), dialogoHandler]
 audioHandler = AudioHandler()
 current_state = None
 
@@ -39,7 +43,7 @@ pygame.mouse.set_visible(False)
 
 def main():
     # TODO: iniciar o menu
-
+    sendDialogo("tsete123")
     while True:
 
         events = pygame.event.get()

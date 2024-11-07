@@ -7,3 +7,6 @@ class DialogoScene(BaseScene):
         super().__init__()
         sceneobjs = [DialogoObj()]
         self.layers.append(sceneobjs)
+
+    def loadText(self, text):
+        self.layers.append([text])

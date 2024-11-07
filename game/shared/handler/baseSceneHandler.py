@@ -1,4 +1,4 @@
-from game.shared.handler.loadHandler import loadFonts
+from game.shared.handler.loadHandler import loadFont
 from game.shared.settings import SETTINGS
 
 
@@ -15,19 +15,12 @@ class BaseSceneHandler:
         self.fonts = None
         self.scene = None
         self.run = True
-        # self.loadFonts()
+        self.loadFont()
 
-    def loadFonts(self):
+    def loadFont(self):
         # TODO: fontes especias do game padrão em todas
         # Load fonts
-        self.fonts = loadFonts(
-            [
-                ["Pixeltype.ttf", SETTINGS["TEXT_SIZES"][0]],
-                ["Pixeltype.ttf", SETTINGS["TEXT_SIZES"][1]],
-                ["Pixeltype.ttf", SETTINGS["TEXT_SIZES"][2]],
-                ["Pixeltype.ttf", SETTINGS["TEXT_SIZES"][3]]
-            ]
-        )
+        self.fonts = loadFont("Pixeltype.ttf", SETTINGS["TEXT_SIZES"][2])
 
     def runState(self, events):
         """

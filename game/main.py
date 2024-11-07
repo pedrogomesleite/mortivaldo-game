@@ -11,6 +11,7 @@ from shared.handler import render
 from shared.settings import SETTINGS
 from shared.handler.audioHandler import AudioHandler
 from shared.handler.loadHandler import loadSprite
+from shared.handler.GameHandler import GameHandler
 
 # Obtém a resolução do monitor (qualquer monitor)
 monitor = get_monitors()[0]
@@ -35,7 +36,8 @@ clock = pygame.time.Clock()
 # IMPORTANT: deixa esse import aqui sem ele NÃO VAI FUNCIONAR
 from game.shared.handler.mensageHandler import sendDialogo, dialogoHandler
 
-scenesHandlers = [ForcaSceneHandler(), dialogoHandler]
+gameHandler = GameHandler(ForcaSceneHandler(), dialogoHandler)
+# scenesHandlers = [ForcaSceneHandler(), dialogoHandler]
 audioHandler = AudioHandler()
 current_state = None
 
@@ -44,7 +46,7 @@ pygame.mouse.set_visible(False)
 
 def main():
     # TODO: iniciar o menu
-    sendDialogo("1111111111111111111111111 2222222222222222222 33333333333333333333 44444444444444444444 55555555555555555 6666666666666666666666666 7777777777777777777 8888888888888")
+    sendDialogo("11111111111 222222222 3333333333 4444444 55555555 6666666666 77777777 88888888")
     sendDialogo("tsete2")
     sendDialogo("tsete3")
 
@@ -58,11 +60,11 @@ def main():
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    scenesHandlers[0].scene.startForca()
+                    gameHandler.sceneHandlers[0].scene.startForca()
 
         SCREEN.fill((0, 0, 0))
 
-        for handler in scenesHandlers:
+        for handler in gameHandler.sceneHandlers:
             handler.runState(events)
             render.renderScene(SCREEN, handler)
 

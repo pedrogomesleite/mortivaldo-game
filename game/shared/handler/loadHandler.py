@@ -67,6 +67,43 @@ def loadAllSpritesFromDirectory(directory: str, color_key: tuple = (255, 255, 25
     return sprites
 
 
+def loadAllSpritesFromDirectoryScale(directory: str, color_key: tuple = (255, 255, 255), scale_factor: float = 1.0):
+    """
+    Carrega todas as imagens de um diretório, redimensiona (se necessário) e retorna em uma lista.
+
+    Argumentos:
+    directory : str
+        O diretório onde as imagens estão localizadas.
+    color_key : tuple
+        A cor do fundo a ser removida das imagens (transparência).
+    scale_factor : float
+        Fator de escala para redimensionar as imagens (1.0 mantém o tamanho original).
+
+    Retorna:
+    list
+        Uma lista contendo as superfícies (sprites) carregadas e possivelmente redimensionadas de todas as imagens.
+    """
+    sprites = []
+
+    if not os.path.isdir(directory):
+        raise ValueError(f"O diretório {directory} não existe.")
+
+    for filename in os.listdir(directory):
+        if filename.endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+            file_path = os.path.join(directory, filename)
+            img = image.load(file_path).convert_alpha()
+
+            if scale_factor != 1.0:
+                width, height = img.get_size()
+                new_width = int(width * scale_factor)
+                new_height = int(height * scale_factor)
+                img = pygame.transform.scale(img, (new_width, new_height))
+            img.set_colorkey(color_key)
+            sprites.append(img)
+
+    return sprites
+
+
 def loadSprite(file_name, color_key: color.Color = (255, 255, 255, 255), folder_name=""):
     """
 	Carrega uma única sprite.

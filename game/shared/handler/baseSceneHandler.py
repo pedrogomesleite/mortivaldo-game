@@ -14,7 +14,7 @@ class BaseSceneHandler:
         # TODO: iniciar as variaveis de cena
         self.fonts = None
         self.scene = None
-        self.run = True
+        self.run = False
         self.loadFont()
 
     def loadFont(self):

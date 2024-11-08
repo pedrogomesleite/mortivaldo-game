@@ -12,6 +12,7 @@ class ForcaSceneHandler(BaseSceneHandler):
         self.square_center = (SETTINGS["SCREEN_SIZE"][0] // 2, SETTINGS["SCREEN_SIZE"][1] // 2)
         self.square_up = 100, 100
         self.isGame = False
+        self.run = False
 
     def runState(self, events):
         super().runState(events)
@@ -19,7 +20,6 @@ class ForcaSceneHandler(BaseSceneHandler):
             # TODO: eventos do wordle
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                print(self.isGame)
                 if not self.isGame:
                     self.clickSwitchBack(event, (self.square_center, 400))
                 elif self.isGame:

@@ -6,6 +6,7 @@ from screeninfo import get_monitors
 from pygame import display
 
 from game.scenes.dialogo.DialogoSceneHandler import DialogoSceneHandler
+from game.scenes.livro.LivroSceneHandler import LivroSceneHandler
 from scenes.forca.ForcaSceneHandler import ForcaSceneHandler
 from shared.handler import render
 from shared.settings import SETTINGS
@@ -35,7 +36,7 @@ clock = pygame.time.Clock()
 # IMPORTANT: deixa esse import aqui sem ele NÃO VAI FUNCIONAR
 from game.shared.handler.mensageHandler import sendDialogo, dialogoHandler
 
-scenesHandlers = [ForcaSceneHandler(), dialogoHandler]
+scenesHandlers = [ForcaSceneHandler(), LivroSceneHandler(), dialogoHandler]
 audioHandler = AudioHandler()
 current_state = None
 
@@ -44,11 +45,7 @@ pygame.mouse.set_visible(False)
 
 def main():
     # TODO: iniciar o menu
-    sendDialogo("tsete1")
-    sendDialogo("tsete2")
-    sendDialogo("tsete3")
     while True:
-
         events = pygame.event.get()
 
         for event in events:

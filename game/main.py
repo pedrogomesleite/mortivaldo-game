@@ -5,13 +5,12 @@ from screeninfo import get_monitors
 
 from pygame import display
 
-from game.scenes.dialogo.DialogoSceneHandler import DialogoSceneHandler
-from game.scenes.livro.LivroSceneHandler import LivroSceneHandler
 from scenes.forca.ForcaSceneHandler import ForcaSceneHandler
 from shared.handler import render
 from shared.settings import SETTINGS
 from shared.handler.audioHandler import AudioHandler
 from shared.handler.loadHandler import loadSprite
+from shared.handler.GameHandler import GameHandler
 
 # Obtém a resolução do monitor (qualquer monitor)
 monitor = get_monitors()[0]
@@ -36,7 +35,8 @@ clock = pygame.time.Clock()
 # IMPORTANT: deixa esse import aqui sem ele NÃO VAI FUNCIONAR
 from game.shared.handler.mensageHandler import sendDialogo, dialogoHandler
 
-scenesHandlers = [ForcaSceneHandler(), LivroSceneHandler(), dialogoHandler]
+gameHandler = GameHandler(ForcaSceneHandler(), dialogoHandler)
+# scenesHandlers = [ForcaSceneHandler(), dialogoHandler]
 audioHandler = AudioHandler()
 current_state = None
 
@@ -46,16 +46,20 @@ pygame.mouse.set_visible(False)
 def main():
     # TODO: iniciar o menu
     while True:
+
         events = pygame.event.get()
 
         for event in events:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    gameHandler.sceneHandlers[0].scene.startForca()
 
         SCREEN.fill((0, 0, 0))
 
-        for handler in scenesHandlers:
+        for handler in gameHandler.sceneHandlers:
             handler.runState(events)
             render.renderScene(SCREEN, handler)
 

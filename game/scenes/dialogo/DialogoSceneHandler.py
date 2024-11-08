@@ -23,9 +23,28 @@ class DialogoSceneHandler(BaseSceneHandler):
                         self.run = False
         super().runState(events)
 
-    def setText(self, text=""):
-        textobgj = TextObj(text, self.fonts)
-        self.texts.append(textobgj)
-        if len(self.scene.textLayer) == 0:
-            self.scene.loadText(textobgj)
+    def setText(self, font, text="", box_size=1200):
+        if font.size(text)[0] < box_size:
+            return text
+
+        lines = []
+
+        j = 0
+        for i in range(len(text.split())):
+            if font.size(" ".join(text.split()[j:i + 1]))[0] >= box_size:
+                # TODO: separar o texto em linhas. o font.render n considera quebras de linha
+
+                print(text.split()[j:i])
+
+                lines.append(" ".join(text.split()[j:i]))
+                j = i
+        lines.append(" ".join(text.split()[j:]))
+
+        for i in range(len(lines)):
+            textObj = TextObj(lines[i], self.fonts, i)
+            self.texts.append(textObj)
+
+            # NOTE: se pá tem q devolver essa linha pro código
+            # if len(self.scene.textLayer) == 0:
+            self.scene.loadText(textObj)
             self.run = True

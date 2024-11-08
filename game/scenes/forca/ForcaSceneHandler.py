@@ -6,13 +6,12 @@ from game.shared.settings import SETTINGS
 
 
 class ForcaSceneHandler(BaseSceneHandler):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, sceneAtual, index):
+        super().__init__(sceneAtual, index)
         self.scene = ForcaScene()
         self.square_center = (SETTINGS["SCREEN_SIZE"][0] // 2, SETTINGS["SCREEN_SIZE"][1] // 2)
         self.square_up = 100, 100
         self.isGame = False
-        self.run = False
 
     def runState(self, events):
         super().runState(events)
@@ -20,6 +19,7 @@ class ForcaSceneHandler(BaseSceneHandler):
             # TODO: eventos do wordle
 
             if event.type == pygame.MOUSEBUTTONDOWN:
+                self.transicao(2)
                 if not self.isGame:
                     self.clickSwitchBack(event, (self.square_center, 400))
                 elif self.isGame:

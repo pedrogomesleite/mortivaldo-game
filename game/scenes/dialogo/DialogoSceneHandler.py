@@ -7,9 +7,10 @@ from game.shared.handler.baseSceneHandler import BaseSceneHandler
 
 class DialogoSceneHandler(BaseSceneHandler):
     def __init__(self):
-        super().__init__()
+        super().__init__([False], 0)
         self.scene = DialogoScene()
         self.texts = []
+        self.run = False
 
     def runState(self, events):
         # TODO: manipular evento de enter
@@ -34,7 +35,6 @@ class DialogoSceneHandler(BaseSceneHandler):
             if font.size(" ".join(text.split()[j:i + 1]))[0] >= box_size:
                 # TODO: separar o texto em linhas. o font.render n considera quebras de linha
 
-                print(text.split()[j:i])
 
                 lines.append(" ".join(text.split()[j:i]))
                 j = i

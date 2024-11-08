@@ -13,8 +13,8 @@ def isInside(pos, posRuna, size):
 
 
 class LivroSceneHandler(BaseSceneHandler):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, sceneAtual, index):
+        super().__init__(sceneAtual, index)
         self.center = None
         self.negacao = "negacao"
         self.acao = "acao"
@@ -22,7 +22,6 @@ class LivroSceneHandler(BaseSceneHandler):
         self.square_center = (SETTINGS["SCREEN_SIZE"][0] // 2, (SETTINGS["SCREEN_SIZE"][1] // 2 + 350))
         self.square_up = 100, 100
         self.isGame = False
-        self.run = True
 
     def runState(self, events):
         super().runState(events)

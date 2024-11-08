@@ -33,10 +33,11 @@ clock = pygame.time.Clock()
 
 # IMPORTANT: deixa esse import aqui sem ele NÃO VAI FUNCIONAR
 from game.shared.handler.mensageHandler import dialogoHandler
+from game.shared.handler.nextSceneHandler import nextScene
 
+sceneAtual = [True, False, False, False]
 
-
-scenesHandlers = [LivroSceneHandler(), dialogoHandler]
+scenesHandlers = [ForcaSceneHandler(sceneAtual, 0), LivroSceneHandler(sceneAtual, 2), dialogoHandler]
 audioHandler = AudioHandler()
 current_state = None
 
@@ -55,6 +56,8 @@ def main():
                 sys.exit()
 
         SCREEN.fill((0, 0, 0))
+
+        nextScene(scenesHandlers, sceneAtual)
 
         for handler in scenesHandlers:
             handler.runState(events)

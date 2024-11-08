@@ -10,11 +10,13 @@ class BaseSceneHandler:
     relacionados aos elementos de UI.
     """
 
-    def __init__(self):
+    def __init__(self, sceneAtual, index):
         # TODO: iniciar as variaveis de cena
         self.fonts = None
         self.scene = None
-        self.run = False
+        self.me = index
+        self.run = sceneAtual[index]
+        self.sceneAtual = sceneAtual
         self.loadFont()
 
     def loadFont(self):
@@ -47,5 +49,9 @@ class BaseSceneHandler:
         self.scene.layers.clear()
         self.scene.layers.append([])
         self.scene.layers.append([])
+
+    def transicao(self, index):
+        self.run = False
+        self.sceneAtual[index] = True
 
 # TODO: transições

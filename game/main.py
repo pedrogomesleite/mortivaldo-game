@@ -5,11 +5,11 @@ from pygame import display
 from screeninfo import get_monitors
 
 from game.scenes.final.FinalSceneHandler import FinalSceneHandler
-from scenes.forca.ForcaSceneHandler import ForcaSceneHandler
-from shared.handler import render
-from shared.handler.audioHandler import AudioHandler
-from shared.handler.loadHandler import loadSprite
-from shared.settings import SETTINGS
+from game.scenes.forca.ForcaSceneHandler import ForcaSceneHandler
+from game.shared.handler import render
+from game.shared.handler.audioHandler import AudioHandler
+from game.shared.handler.loadHandler import loadSprite
+from game.shared.settings import SETTINGS
 
 # Obtém a resolução do monitor (qualquer monitor)
 monitor = get_monitors()[0]

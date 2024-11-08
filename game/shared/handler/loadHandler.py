@@ -137,7 +137,7 @@ def loadFont(fontName: "", size):
 # TODO: Função que manipula o objeto de animação
 
 def loadMusic(file_name, folder_name=""):
-    pygame.mixer.music.load(os.path.join(SETTINGS["SOURCE_DIR"], "audio", folder_name, file_name))
+    pygame.mixer.music.load(os.path.join(SETTINGS["SOURCE_DIR"], "audio", folder_name, file_name + ".mp3"))
 
 
 def loadAudio(file_name, volume=0.3, folder_name=""):

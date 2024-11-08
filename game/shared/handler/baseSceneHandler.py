@@ -18,6 +18,7 @@ class BaseSceneHandler:
         self.run = sceneAtual[index]
         self.sceneAtual = sceneAtual
         self.loadFont()
+        self.isPlayng = True
 
     def loadFont(self):
         # TODO: fontes especias do game padrão em todas
@@ -54,5 +55,8 @@ class BaseSceneHandler:
         self.run = False
         self.sceneAtual[self.me] = False
         self.sceneAtual[index] = True
+
+    def playMusci(self):
+        pass
 
 # TODO: transições

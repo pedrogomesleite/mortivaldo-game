@@ -1,6 +1,7 @@
 import pygame
 
 from game.scenes.livro.LivroScene import LivroScene
+from game.shared.handler.audioHandler import AudioHandler
 from game.shared.handler.baseSceneHandler import BaseSceneHandler
 from game.shared.handler.loadHandler import loadFont
 from game.shared.handler.nextSceneHandler import nextScene
@@ -31,6 +32,7 @@ class LivroSceneHandler(BaseSceneHandler):
         self.square_center = (SETTINGS["SCREEN_SIZE"][0] // 2, (SETTINGS["SCREEN_SIZE"][1] // 2 + 350))
         self.square_up = 100, 100
         self.isGame = False
+        self.audio = AudioHandler()
 
         self.respostas = [
             ["comeco", "negacao"],
@@ -40,6 +42,11 @@ class LivroSceneHandler(BaseSceneHandler):
             ["trevas", "negacao", "acao"]
         ]
         self.perguntaAtual = 0
+        self.isPlayng = True
+
+    def playMusci(self):
+        self.audio.playMusic("music 3")
+        self.isPlayng = False
 
     def loadFont(self):
         # TODO: fontes especias do game padrão em todas
@@ -49,7 +56,6 @@ class LivroSceneHandler(BaseSceneHandler):
     def runState(self, events):
         super().runState(events)
         for event in events:
-            # TODO: eventos do wordle
 
 
 
@@ -106,12 +112,14 @@ class LivroSceneHandler(BaseSceneHandler):
             perguntaAtual = self.respostas[self.perguntaAtual]
             for item in keyList:
                 if item not in perguntaAtual:
+                    self.audio.playSoundEffect("negativo")
                     # TODO: som de fracasso
                     return
+            self.audio.playSoundEffect("positivo")
             self.perguntaAtual += 1
             print(self.perguntaAtual, len(self.respostas))
             if self.perguntaAtual == len(self.respostas):
                 self.transicao(self.me + 1)
                 return
             self.scene.setPergunta(self.perguntaAtual)
-            # TODO: som de sucesso
+

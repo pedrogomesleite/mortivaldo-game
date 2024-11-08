@@ -1,16 +1,15 @@
-import pygame
 import sys
-from os import path
+
+import pygame
+from pygame import display
 from screeninfo import get_monitors
 
-from pygame import display
-
+from game.scenes.livro.LivroSceneHandler import LivroSceneHandler
 from scenes.forca.ForcaSceneHandler import ForcaSceneHandler
 from shared.handler import render
-from shared.settings import SETTINGS
 from shared.handler.audioHandler import AudioHandler
 from shared.handler.loadHandler import loadSprite
-from shared.handler.GameHandler import GameHandler
+from shared.settings import SETTINGS
 
 # Obtém a resolução do monitor (qualquer monitor)
 monitor = get_monitors()[0]
@@ -33,10 +32,11 @@ clock = pygame.time.Clock()
 # TODO: [forca, juntar, livro, final, dialogo]
 
 # IMPORTANT: deixa esse import aqui sem ele NÃO VAI FUNCIONAR
-from game.shared.handler.mensageHandler import sendDialogo, dialogoHandler
+from game.shared.handler.mensageHandler import dialogoHandler
 
-gameHandler = GameHandler(ForcaSceneHandler(), dialogoHandler)
-# scenesHandlers = [ForcaSceneHandler(), dialogoHandler]
+
+
+scenesHandlers = [LivroSceneHandler(), dialogoHandler]
 audioHandler = AudioHandler()
 current_state = None
 
@@ -53,13 +53,10 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    gameHandler.sceneHandlers[0].scene.startForca()
 
         SCREEN.fill((0, 0, 0))
 
-        for handler in gameHandler.sceneHandlers:
+        for handler in scenesHandlers:
             handler.runState(events)
             render.renderScene(SCREEN, handler)
 

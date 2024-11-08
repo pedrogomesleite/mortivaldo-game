@@ -12,7 +12,7 @@ class LivroScene(BaseScene):
     def __init__(self):
         super().__init__()
         mouseobj = MouseObj(path.join(path.join(SETTINGS["SOURCE_DIR"], "sprite"), "cursor-esqueleto"))
-        self.defoultBack = BackgroundObj("estudo.png", "background")
+        self.defoultBack = BackgroundObj("sala de estudo.png", "background")
         self.gameBack = BackgroundObj("papel.png", "livro")
         self.backgroundlayer = [self.defoultBack]
 

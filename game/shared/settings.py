@@ -10,7 +10,7 @@ SETTINGS = {
     "GRID_ORIGIN": Vector2(50, 200),
     "GRID_SIZE": Vector2(900, 450),
     "UNIT_SIZE": 50,
-    "TEXT_SIZES": (200, 100, 60, 40)
+    "TEXT_SIZES": (200, 100, 60, 40, 20, 15)
 }
 
 # TODO: trocar para os paths corretos (game, assets)

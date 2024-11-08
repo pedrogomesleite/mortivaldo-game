@@ -3,8 +3,8 @@ from game.shared.obj.RunasObj import RunasObj
 
 class RunasSomaObj(RunasObj):
     def __init__(self):
-        super().__init__(0.5)
-        pos = (850, 310)
+        super().__init__(None, 0.5)
+        pos = (840, 240)
         newPos = []
         for i in range(len(self.sprites)):
             newPos.append(pos)

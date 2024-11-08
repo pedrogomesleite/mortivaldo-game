@@ -10,7 +10,6 @@ class BackgroundObj(BaseAsset):
         self.loadStatic(filename, folder)
 
     def drawSelf(self, screen):
-        # self.transform(screen)
         self.static(screen)
 
     def transform(self, screen):

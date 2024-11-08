@@ -52,6 +52,7 @@ class BaseSceneHandler:
 
     def transicao(self, index):
         self.run = False
+        self.sceneAtual[self.me] = False
         self.sceneAtual[index] = True
 
 # TODO: transições

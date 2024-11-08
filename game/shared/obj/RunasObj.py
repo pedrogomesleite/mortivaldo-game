@@ -6,7 +6,7 @@ from game.shared.settings import SETTINGS
 
 
 class RunasObj(BaseAsset):
-    def __init__(self, factor=0.15):
+    def __init__(self, font, factor=0.15):
         super().__init__()
         self.loadAnimation(path.join(path.join(SETTINGS["SOURCE_DIR"], "sprite", "runas")), factor)
         lin = [600, 700, 800, 900, 1000, 450]
@@ -33,6 +33,7 @@ class RunasObj(BaseAsset):
             "acao": [(col[5], lin[5]), self.sprites[18]],
             "negacao": [(col[6], lin[5]), self.sprites[19]],
         }
+        self.font = font
 
     def drawSelf(self, screen):
 
@@ -40,6 +41,18 @@ class RunasObj(BaseAsset):
             position = value[0]
             sprite = value[1]
             screen.blit(sprite, position)
+        if self.font is not None:
+            self.drawRunaNamesAbove(screen)
+
+    def drawRunaNamesAbove(self, screen):
+        text_color = (255, 255, 255)
+
+        for key, value in self.spritesPos.items():
+            x, y = value[0]
+
+            text_surface = self.font.render(key, True, text_color)
+
+            screen.blit(text_surface, (x + text_surface.get_width() // 2, y - 20))
 
     def loadAnimation(self, folder="", factor=0.15):
         self.sprites = loadAllSpritesFromDirectoryScale(folder, scale_factor=factor)

@@ -4,7 +4,7 @@ import pygame
 from pygame import display
 from screeninfo import get_monitors
 
-from game.scenes.livro.LivroSceneHandler import LivroSceneHandler
+from game.scenes.final.FinalSceneHandler import FinalSceneHandler
 from scenes.forca.ForcaSceneHandler import ForcaSceneHandler
 from shared.handler import render
 from shared.handler.audioHandler import AudioHandler
@@ -34,10 +34,16 @@ clock = pygame.time.Clock()
 # IMPORTANT: deixa esse import aqui sem ele NÃO VAI FUNCIONAR
 from game.shared.handler.mensageHandler import dialogoHandler
 from game.shared.handler.nextSceneHandler import nextScene
+from game.scenes.livro.LivroSceneHandler import LivroSceneHandler
 
-sceneAtual = [True, False, False, False]
+sceneAtual = [False, False, True, False]
 
-scenesHandlers = [ForcaSceneHandler(sceneAtual, 0), LivroSceneHandler(sceneAtual, 2), dialogoHandler]
+scenesHandlers = [
+    ForcaSceneHandler(sceneAtual, 0),
+    LivroSceneHandler(sceneAtual, 2),
+    FinalSceneHandler(sceneAtual, 3),
+    dialogoHandler
+]
 audioHandler = AudioHandler()
 current_state = None
 
